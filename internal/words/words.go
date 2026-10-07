@@ -7,29 +7,29 @@ import (
 	"time"
 )
 
-// Common English words for typing tests. Kept small for simplicity;
-// expand as desired.
+// Official Monkeytype default English wordlist (english.json, 200 words).
+// Source: https://github.com/monkeytypegame/monkeytype/blob/master/frontend/static/languages/english.json
 var common = []string{
 	"the", "be", "of", "and", "a", "to", "in", "he", "have", "it",
-	"that", "for", "they", "with", "as", "not", "on", "she", "at", "by",
-	"this", "we", "you", "do", "but", "from", "or", "which", "one", "would",
-	"all", "will", "there", "say", "who", "make", "when", "can", "more", "if",
-	"time", "up", "out", "who", "into", "way", "could", "my", "than", "first",
-	"water", "been", "call", "oil", "its", "now", "find", "long", "down", "day",
-	"did", "get", "come", "made", "may", "part", "over", "new", "sound", "take",
-	"only", "little", "work", "know", "place", "year", "live", "me", "back", "give",
-	"most", "very", "after", "thing", "our", "just", "name", "good", "sentence", "man",
-	"think", "help", "low", "line", "differ", "turn", "cause", "much", "mean", "before",
-	"move", "right", "boy", "old", "too", "same", "tell", "does", "set", "three",
-	"want", "air", "well", "also", "play", "small", "end", "put", "home", "read",
-	"hand", "port", "large", "spell", "add", "even", "land", "here", "must", "big",
-	"high", "such", "follow", "act", "why", "ask", "men", "change", "went", "light",
-	"kind", "off", "need", "house", "picture", "try", "again", "animal", "point", "mother",
-	"world", "near", "build", "self", "earth", "father", "head", "stand", "own", "page",
-	"should", "country", "found", "answer", "school", "grow", "study", "still", "learn", "plant",
-	"cover", "food", "sun", "four", "between", "state", "keep", "eye", "never", "last",
-	"let", "thought", "city", "tree", "cross", "farm", "hard", "start", "might", "story",
-	"code", "keyboard", "terminal", "fast", "type", "monkey", "speed", "focus", "rhythm", "flow",
+	"that", "for", "they", "I", "with", "as", "not", "on", "she", "at",
+	"by", "this", "we", "you", "do", "but", "from", "or", "which", "one",
+	"would", "all", "will", "there", "say", "who", "make", "when", "can", "more",
+	"if", "no", "man", "out", "other", "so", "what", "time", "up", "go",
+	"about", "than", "into", "could", "state", "only", "new", "year", "some", "take",
+	"come", "these", "know", "see", "use", "get", "like", "then", "first", "any",
+	"work", "now", "may", "such", "give", "over", "think", "most", "even", "find",
+	"day", "also", "after", "way", "many", "must", "look", "before", "great", "back",
+	"through", "long", "where", "much", "should", "well", "people", "down", "own", "just",
+	"because", "good", "each", "those", "feel", "seem", "how", "high", "too", "place",
+	"little", "world", "very", "still", "nation", "hand", "old", "life", "tell", "write",
+	"become", "here", "show", "house", "both", "between", "need", "mean", "call", "develop",
+	"under", "last", "right", "move", "thing", "general", "school", "never", "same", "another",
+	"begin", "while", "number", "part", "turn", "real", "leave", "might", "want", "point",
+	"form", "off", "child", "few", "small", "since", "against", "ask", "late", "home",
+	"interest", "large", "person", "end", "open", "public", "follow", "during", "present", "without",
+	"again", "hold", "govern", "around", "possible", "head", "consider", "word", "program", "problem",
+	"however", "lead", "system", "set", "order", "eye", "plan", "run", "keep", "face",
+	"fact", "group", "play", "stand", "increase", "early", "course", "change", "help", "line",
 }
 
 // Generate returns n random words joined for a typing test.
