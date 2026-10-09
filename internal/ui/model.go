@@ -7,6 +7,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/katistix/termitype/internal/config"
+	"github.com/katistix/termitype/internal/theme"
 	"github.com/katistix/termitype/internal/typing"
 	"github.com/katistix/termitype/internal/words"
 )
@@ -25,14 +26,15 @@ type Model struct {
 	engine *typing.Engine
 	styles Styles
 	width  int
+	height int
 }
 
-// New creates a model with a fresh test from cfg.
-func New(cfg config.Config) Model {
+// New creates a model with a fresh test from cfg, drawn in theme t.
+func New(cfg config.Config, t theme.Theme) Model {
 	return Model{
 		cfg:    cfg,
 		engine: newEngine(cfg),
-		styles: DefaultStyles(),
+		styles: NewStyles(t),
 	}
 }
 
@@ -65,7 +67,7 @@ func (m Model) Init() tea.Cmd { return tick() }
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.WindowSizeMsg:
-		m.width = msg.Width
+		m.width, m.height = msg.Width, msg.Height
 		return m, nil
 
 	case tickMsg:
@@ -151,7 +153,7 @@ func (m Model) View() string {
 		b.WriteString(m.renderText())
 	}
 
-	return s.App.Render(b.String())
+	return s.fill(s.App.Render(b.String()), m.width, m.height)
 }
 
 func (m Model) renderLiveStats() string {
@@ -159,7 +161,7 @@ func (m Model) renderLiveStats() string {
 	parts := ""
 	if m.cfg.Mode == config.ModeTime {
 		secs := int(m.engine.Remaining().Round(time.Second).Seconds())
-		parts += s.Stat.Render("time ") + s.StatVal.Render(fmt.Sprintf("%d", secs)) + "   "
+		parts += s.Stat.Render("time ") + s.StatVal.Render(fmt.Sprintf("%d", secs)) + s.Stat.Render("   ")
 	}
 	wpm := fmt.Sprintf("%.0f", m.engine.WPM())
 	acc := fmt.Sprintf("%.0f%%", m.engine.Accuracy()*100)
@@ -242,7 +244,7 @@ func (m Model) renderText() string {
 				sb.WriteString(s.Cursor.Render("·"))
 			}
 		} else if i+1 < end {
-			sb.WriteString(" ")
+			sb.WriteString(s.Base.Render(" "))
 		}
 	}
 	w := m.width - 8

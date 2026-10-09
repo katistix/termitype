@@ -24,3 +24,15 @@ termitype --help    # all options
 ```
 
 Keys: `esc` restart, `ctrl+c` quit, `ctrl+w` delete word.
+
+## Themes
+
+All of [monkeytype's](https://monkeytype.com) themes are included.
+
+```sh
+termitype theme          # fuzzy-find a theme with live preview
+termitype theme dracula  # set one directly
+```
+
+In the picker, type to filter, `↑/↓` to move, `enter` to select, `esc` to cancel.
+The choice is saved to `~/.config/termitype/config.json` (or `$XDG_CONFIG_HOME/termitype/config.json`).

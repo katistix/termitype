@@ -47,6 +47,7 @@ func Usage() string {
 
 usage:
   termitype [-t seconds | -w count]
+  termitype theme [name]
 
 options:
   -t, --time <s>    timed test, s seconds (default 15)
@@ -61,7 +62,9 @@ keys:
 examples:
   termitype           15 second test
   termitype -t 30     30 second test
-  termitype -w 50     50 word test`
+  termitype -w 50     50 word test
+  termitype theme     pick a theme (fuzzy search, live preview)
+  termitype theme nord  set the theme directly`
 }
 
 // Parse parses args (without program name) into a Config.
